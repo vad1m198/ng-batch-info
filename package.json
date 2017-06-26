@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng build --watch --prod --output-hashing none",
+    "build": "ng build --prod --output-hashing none",
     "lint": "ng lint",
     "deploy": "gulp deploy"
   },

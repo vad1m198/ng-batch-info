@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input,QueryList, ContentChildren } from "@angular/core";
+import {SlTab} from './tab.component';
 
 @Component({
   selector: 'sl-tabs',
@@ -7,11 +8,18 @@ import { Component, Input } from "@angular/core";
 
 export class SlTabs {
   @Input() type: 'default' | 'scoped' = 'default';
-  activeTabId: string | number = 2;
+  activeTab: SlTab;
+  @ContentChildren(SlTab) tabs: QueryList<SlTab>;
 
-  select(id: string | number) {
-    console.log('select >>> ', id);
-    this.activeTabId = id;
+  select(tab: SlTab) {
+    if(this.activeTab) this.activeTab.active = false;
+    tab.active = true;
+    this.activeTab = tab;
+
+  }
+  ngAfterContentInit() {
+    this.activeTab = this.tabs.first;
+    if(this.activeTab) this.activeTab.active = true;
   }
 
 }
