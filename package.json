@@ -1,10 +1,10 @@
 {
-  "name": "ng-simple-app",
+  "name": "ng-batch-info",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng build  --watch --prod --output-hashing none",
+    "start": "ng build --watch --prod --output-hashing none",
     "lint": "ng lint",
     "deploy": "gulp deploy"
   },

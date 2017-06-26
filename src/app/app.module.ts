@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { InfoListModule } from "./infoList/infoList.module";
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,InfoListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
