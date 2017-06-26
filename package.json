@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng build --watch",
+    "start": "ng build  --watch --prod --output-hashing none",
     "lint": "ng lint",
     "deploy": "gulp deploy"
   },
