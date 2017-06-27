@@ -33,7 +33,7 @@
          aria-selected="true" 
          aria-controls="tab-default-1" 
          id="tab-default-1__item">
-         {{tab.heading}}
+          <ng-template [ngTemplateOutlet]="tab.heading"></ng-template>
       </a>
     </li>
     </ul>

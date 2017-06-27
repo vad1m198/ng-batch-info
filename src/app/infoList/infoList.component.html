@@ -1,18 +1,23 @@
 <h2>Info List updated6</h2>
 {{infos.length}} Infos
 <div class="slds-text-heading_large">The quick brown fox jumps over the lazy dog.</div>
+
 <sl-tabs>
-
-
-<ng-template sl-tab heading="Overview">
-    Overview body
-</ng-template>
-
-<ng-template sl-tab heading="tab2">
-    tab2
-</ng-template>
-
-<ng-template sl-tab heading="tab3">
-    tab3
-</ng-template>
+    
+    <sl-tab>
+        <ng-template sl-tab-heading>
+            <div>Failed</div>
+        </ng-template>
+        <ng-template sl-tab-content>
+            <div>Failed content</div>
+        </ng-template>    
+    </sl-tab>
+    <sl-tab>
+        <ng-template sl-tab-heading>
+            <div>Processing</div>
+        </ng-template>
+        <ng-template sl-tab-content>
+            <div>Processing content</div>
+        </ng-template>    
+    </sl-tab>
 </sl-tabs>
