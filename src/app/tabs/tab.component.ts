@@ -23,8 +23,6 @@ export class SlTab {
   constructor(@Optional() public templateRef: TemplateRef<any>) {}
 
   ngAfterContentInit() {
-    console.log('this.headingTemplate',this.headingTemplate);
-    console.log('this.contentTemplate',this.contentTemplate);
     if (this.headingTemplate) {
       this.heading = this.headingTemplate.templateRef;
     }
