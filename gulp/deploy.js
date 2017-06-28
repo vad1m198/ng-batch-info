@@ -25,7 +25,7 @@ module.exports = function(gulp, config) {
 	});
 
     gulp.task('tempgen:app', () => {
-		return gulp.src(['dist/*.js', 'dist/*.css','dist/*.woff','dist/*.woff2'])
+		return gulp.src(['dist/**','!dist/index.html'])
 			.pipe(gulp.dest(`.tmp/static_resources/${config.resources.app_resource_name}`));
 	});
 
