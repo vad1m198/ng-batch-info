@@ -2,7 +2,7 @@ import { Component,Input } from "@angular/core";
 import { Config } from '../util/Config';
 
 @Component({
-  selector: "slIcon",
+  selector: "sl-icon",
   templateUrl: "icon.component.html"
 })
 export class SlIconComponent {
