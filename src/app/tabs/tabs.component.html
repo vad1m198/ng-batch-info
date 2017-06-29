@@ -1,45 +1,24 @@
-<!-- <div class="slds-tabs_default">
-  <ul class="slds-tabs_default__nav" role="tablist">
-    <li class="slds-tabs_default__item" (click)="select(1)" [class.slds-active]="activeTabId == 1" title="Item One" role="presentation">
-      <a class="slds-tabs_default__link"  role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">
-        Item One
-      </a>
-    </li>
-    <li class="slds-tabs_default__item" (click)="select(2)" [class.slds-active]="activeTabId == 2" title="Item Two" role="presentation">
-      <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">
-        Item Two
-      </a>
-    </li>
-    </ul>
-  <div id="tab-default-1" class="slds-tabs_default__content" [class.slds-show]="activeTabId == 1" [class.slds-hide]="activeTabId != 1" role="tabpanel" aria-labelledby="tab-default-1__item">
-    Item One Content
-  </div>
-  <div id="tab-default-2" class="slds-tabs_default__content" [class.slds-show]="activeTabId == 2" [class.slds-hide]="activeTabId != 2" role="tabpanel" aria-labelledby="tab-default-2__item">
-    Item Two Content
-  </div>
-</div> -->
-
 <div class="slds-tabs_default">
   <ul class="slds-tabs_default__nav" role="tablist">
-    <li *ngFor="let tab of tabs"  
-        class="slds-tabs_default__item" 
+    <li *ngFor="let tab of tabs"
+        class="slds-tabs_default__item"
         [class.slds-active]="tab.active"
         (click)="select(tab)"
-        title="Item One" 
+        title="Item One"
         role="presentation">
-      
-      <a class="slds-tabs_default__link"  
-         role="tab" tabindex="0" 
-         aria-selected="true" 
-         aria-controls="tab-default-1" 
+
+      <a class="slds-tabs_default__link"
+         role="tab" tabindex="0"
+         aria-selected="true"
+         aria-controls="tab-default-1"
          id="tab-default-1__item">
           <ng-template [ngTemplateOutlet]="tab.heading"></ng-template>
       </a>
     </li>
     </ul>
-  <div id="tab-default-1" 
-       class="slds-tabs_default__content slds-show" 
-       role="tabpanel" 
+  <div id="tab-default-1"
+       class="slds-tabs_default__content slds-show"
+       role="tabpanel"
        aria-labelledby="tab-default-1__item">
     <ng-template [ngTemplateOutlet]="activeTab?.templateRef"></ng-template>
   </div>
