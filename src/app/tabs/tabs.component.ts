@@ -5,7 +5,6 @@ import {SlTab} from './tab.component';
   selector: 'sl-tabs',
   templateUrl: './tabs.component.html'
 })
-
 export class SlTabs {
   @Input() type: 'default' | 'scoped' = 'default';
   activeTab: SlTab;

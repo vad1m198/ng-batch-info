@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { InfoListModule } from "./infoList/infoList.module";
 import { AppComponent } from './app.component';
+import { Config } from './util/Config';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,InfoListModule
   ],
-  providers: [],
+  providers: [Config],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

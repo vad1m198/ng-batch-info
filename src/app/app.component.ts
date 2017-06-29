@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,ElementRef,Optional } from '@angular/core';
+import { Config } from './util/Config';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app updated';
+
+  constructor(public elementRef: ElementRef,public config: Config) {
+    config.sldsUrl = this.elementRef.nativeElement.getAttribute("sldsUrl");
+
+  }
+
 }

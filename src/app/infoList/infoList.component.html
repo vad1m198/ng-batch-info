@@ -1,22 +1,17 @@
 <h2>Info List</h2>
 {{infos.length}} Infos updated
 
-<span class="slds-icon_container slds-icon-standard-account" title="description of icon when needed">
-  <svg aria-hidden="true" class="slds-icon">
-    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#announcement"></use>
-  </svg>
-  <span class="slds-assistive-text">Account Icon</span>
-</span>
+    <div class="my-icon" aria-label="My icon" [inlineSVG]="iconUrl"></div>
 
 <sl-tabs>
-    
+
     <sl-tab>
         <ng-template sl-tab-heading>
             <div>Failed</div>
         </ng-template>
         <ng-template sl-tab-content>
             <div>Failed content</div>
-        </ng-template>    
+        </ng-template>
     </sl-tab>
     <sl-tab>
         <ng-template sl-tab-heading>
@@ -24,6 +19,6 @@
         </ng-template>
         <ng-template sl-tab-content>
             <div>Processing content</div>
-        </ng-template>    
+        </ng-template>
     </sl-tab>
 </sl-tabs>
