@@ -1,15 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { InfoListModule } from "./infoList/infoList.module";
 import { AppComponent } from './app.component';
 import { Config } from './util/Config';
+import { TabsModule } from "./tabs/tabs.module";
+import { SlIconModule } from "./icon/icon.module";
+import { InfoListModule } from "./infoList/infoList.module";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule,InfoListModule
+    BrowserModule,TabsModule,SlIconModule,InfoListModule
   ],
   providers: [Config],
   bootstrap: [AppComponent]
