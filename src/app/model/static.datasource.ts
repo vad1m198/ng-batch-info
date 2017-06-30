@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BatchInfo } from "./info.model";
+import { IBatchInfo } from "./info.model";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/from";
 
@@ -12,42 +12,30 @@ export interface RemotingOptions {
 
 @Injectable()
 export class StaticDataSource {
-  private infos: BatchInfo[] = [
-    new BatchInfo("1", "1Extended status", "1Status"),
-    new BatchInfo("2", "2Extended status", "2Status"),
-    new BatchInfo("3", "3Extended status", "3Status"),
-    new BatchInfo("4", "4Extended status", "4Status"),
-    new BatchInfo("5", "5Extended status", "5Status"),
-    new BatchInfo("6", "6Extended status", "6Status"),
-    new BatchInfo("7", "7Extended status", "7Status"),
-    new BatchInfo("8", "8Extended status", "8Status"),
-    new BatchInfo("9", "9Extended status", "9Status"),
-    new BatchInfo("10", "10Extended status", "10Status"),
-  ];
 
-  private _controller: string = "Batches_Info_Controller";
+  private _controller = "Batches_Info_Controller";
 
-  getInfosPromise(pageNumber:number,recordsNumber:number,timePeriod:string,jobStatus:string ): Promise<BatchInfo[]> {
-    let params = [];
+  getInfosPromise(pageNumber:number,recordsNumber:number,timePeriod:string,jobStatus:string ): Promise<IBatchInfo[]> {
+    const params = [];
     params.push(JSON.stringify({event:'loadBatchesInfos',jobStatus:jobStatus,pageNumber:pageNumber,recordsNumber:recordsNumber,timePeriod:timePeriod}));
     return new Promise((resolve, reject) => {
       this.execute('remoteHandler', params )
-            .then(res => resolve(JSON.parse(res.aRecords)))
+            .then(res => resolve(<IBatchInfo[]>JSON.parse(res.aRecords)))
             .catch(err => reject(err))
     })
 
   }
 
   private execute(method: string, params: Array<any>, config?: RemotingOptions): Promise<any> {
-    console.log('execute >>> ', method, params)
-		let ctrl: any = window[this._controller] || {};
+    //console.log('execute >>> ', method, params)
+		const ctrl: any = window[this._controller] || {};
 
 		config = config || { escape: false }
 
 		if (ctrl.hasOwnProperty(method)) {
 
-			let methodFunc = ctrl[method];
-			let directCfg = methodFunc.directCfg;
+			const methodFunc = ctrl[method];
+			const directCfg = methodFunc.directCfg;
 
 			return new Promise((resolve, reject) => {
 				// The wrong number of parameters were included
@@ -56,7 +44,7 @@ export class StaticDataSource {
 					return;
 				}
 
-				let callback = function(res, err) {
+				const callback = function(res, err) {
 					if (res) {
             let oResult = <any>{};
             try {

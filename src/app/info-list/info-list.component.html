@@ -1,21 +1,39 @@
-<div class="slds-form-element select-container">
-  <label class="slds-form-element__label" for="timePeriodSelect">Select time period</label>
-  <div class="slds-form-element__control">
-    <div class="slds-select_container">
-      <select class="slds-select" id="timePeriodSelect" [(ngModel)]="timePeriod"  (change)="onSelectChange($event.target.value)">
-        <option [value]="'LAST_N_YEARS:10'">All</option>
-        <option [value]="'TODAY'">Today</option>
-        <option [value]="'LAST_WEEK'">Last Week</option>
-        <option [value]="'LAST_MONTH'">Last Month</option>
-      </select>
+<div>
+  <div class="select-but-container slds-m-horizontal_x-small">
+    <div class="slds-form-element select-container">
+      <label class="slds-form-element__label" for="timePeriodSelect">Select time period</label>
+      <div class="slds-form-element__control">
+        <div class="slds-select_container">
+          <select class="slds-select" id="timePeriodSelect" [(ngModel)]="timePeriod"  (change)="onSelectChange($event.target.value)">
+            <option [value]="'LAST_N_YEARS:10'">All</option>
+            <option [value]="'TODAY'">Today</option>
+            <option [value]="'LAST_WEEK'">Last Week</option>
+            <option [value]="'LAST_MONTH'">Last Month</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="slds-button-group" role="group">
+      <button class="slds-button slds-button_neutral" [disabled]="pageNumber == 0" (click)="onPaginationClick($event.target.innerText)">Previous</button>
+      <button class="slds-button slds-button_neutral" [disabled]="recordsNumber > infos.length" (click)="onPaginationClick($event.target.innerText)">Next</button>
     </div>
   </div>
-</div>
 
-<div class="sl-list" *ngIf="infos.length > 0">
-  <info-card *ngFor="let info of infos" [infoObj]="info" [type]="infoType"></info-card>
-</div>
+  <div class="sl-list" *ngIf="infos.length > 0">
+    <info-card *ngFor="let info of infos" [infoObj]="info" [type]="infoType"></info-card>
+  </div>
 
-<div *ngIf="infos.length == 0">
-  No records found
+  <div *ngIf="infos.length == 0 && !isLoading">
+    No records found
+  </div>
+
+  <div class="slds-spinner_container" *ngIf="isLoading">
+    <div role="status" class="slds-spinner slds-spinner_medium">
+      <span class="slds-assistive-text">Loading</span>
+      <div class="slds-spinner__dot-a"></div>
+      <div class="slds-spinner__dot-b"></div>
+    </div>
+  </div>
+
 </div>

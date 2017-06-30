@@ -1,4 +1,4 @@
-export class BatchInfo {
+/*export class BatchInfo {
 
   constructor(
     public Id?: string,
@@ -6,4 +6,21 @@ export class BatchInfo {
     public Status?: string
   ){ }
 
+}*/
+
+export interface IBatchInfo {
+  Id?: string;
+  ExtendedStatus?: string;
+  Status?: string;
+  CreatedDate?:number|string;
+  JobItemsProcessed?:number;
+  TotalJobItems?:number;
+  ApexClass?:IApexClass;
 }
+
+export interface IApexClass {
+  Id?: string;
+  Name?: string;
+}
+
+

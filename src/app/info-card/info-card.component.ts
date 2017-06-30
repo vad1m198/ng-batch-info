@@ -1,5 +1,5 @@
 import { Component,Input } from "@angular/core";
-import { BatchInfo } from "../model/info.model";
+import { IBatchInfo } from "../model/info.model";
 
 @Component({
   selector: "info-card",
@@ -7,7 +7,7 @@ import { BatchInfo } from "../model/info.model";
   styleUrls: ['info-card.component.css']
 })
 export class InfoCardComponent {
-  @Input() infoObj: BatchInfo;
+  @Input() infoObj: IBatchInfo;
   @Input() type: String;
 
   get Id():string {

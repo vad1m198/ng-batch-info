@@ -1,5 +1,5 @@
 import { Component,Input } from "@angular/core";
-import { BatchInfo } from "../model/info.model";
+import { IBatchInfo } from "../model/info.model";
 import { StaticDataSource } from "../model/static.datasource";
 
 @Component({
@@ -11,14 +11,20 @@ import { StaticDataSource } from "../model/static.datasource";
             }
             :host .select-container {
               width:200px;
+            }
+            :host .select-but-container {
+              display: flex;
+              align-items: flex-end;
+              justify-content: space-between;
             }`]
 })
 export class InfoListComponent {
     @Input() type:string;
-    private pageNumber:number = 0;
-    private recordsNumber:number = 10;
+    public pageNumber:number = 0;
+    public recordsNumber:number = 10;
     public timePeriod:string = 'LAST_N_YEARS:10';
-    public infos:BatchInfo[] = [];
+    public infos:IBatchInfo[] = [];
+    public isLoading = true;
 
     constructor(private dataSource :StaticDataSource) {
     }
@@ -36,10 +42,17 @@ export class InfoListComponent {
       this.fetchInfos();
     }
 
+    onPaginationClick(buttonName):void{
+      if(buttonName == 'Next') this.pageNumber++;
+      if(buttonName == 'Previous') this.pageNumber--;
+      this.fetchInfos();
+    }
+
     private fetchInfos():void {
+      this.isLoading = true;
       this.dataSource.getInfosPromise(this.pageNumber,this.recordsNumber,this.timePeriod,this.type )
-        .then(res => this.infos = res)
-        .catch(err => console.error(err));
+        .then(res => {this.isLoading = false;this.infos = res;console.log('fetchInfos >>> ', this.infos)})
+        .catch(err => {this.isLoading = false;console.error(err)});
     }
 
 }
