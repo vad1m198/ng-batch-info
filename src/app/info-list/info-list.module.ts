@@ -6,7 +6,7 @@ import { InfoListComponent } from "./info-list.component";
 import { InfoCardModule } from "../info-card/info-card.module";
 
 @NgModule({
-  imports: [ModelModule, BrowserModule,InfoCardModule],
+  imports: [ModelModule, BrowserModule,InfoCardModule,FormsModule],
   declarations: [InfoListComponent],
   exports: [InfoListComponent]
 })

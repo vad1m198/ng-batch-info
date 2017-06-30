@@ -1,6 +1,6 @@
 import { Component,Input } from "@angular/core";
 import { BatchInfo } from "../model/info.model";
-import { InfoRepository } from "../model/info.repository";
+import { StaticDataSource } from "../model/static.datasource";
 
 @Component({
   selector: "info-lst",
@@ -8,19 +8,38 @@ import { InfoRepository } from "../model/info.repository";
   styles: [`:host .sl-list {
               display: flex;
               flex-wrap: wrap;
+            }
+            :host .select-container {
+              width:200px;
             }`]
 })
 export class InfoListComponent {
     @Input() type:string;
+    private pageNumber:number = 0;
+    private recordsNumber:number = 10;
+    public timePeriod:string = 'LAST_N_YEARS:10';
+    public infos:BatchInfo[] = [];
 
-    constructor(private repository: InfoRepository) {}
+    constructor(private dataSource :StaticDataSource) {
+    }
 
-    get infos(): BatchInfo[] {
-      return this.repository.getInfos();
+    ngAfterViewInit() {
+      this.fetchInfos();
     }
 
     get infoType(): string {
       return this.type;
+    }
+
+    onSelectChange(newValue):void {
+      this.timePeriod = newValue;
+      this.fetchInfos();
+    }
+
+    private fetchInfos():void {
+      this.dataSource.getInfosPromise(this.pageNumber,this.recordsNumber,this.timePeriod,this.type )
+        .then(res => this.infos = res)
+        .catch(err => console.error(err));
     }
 
 }
