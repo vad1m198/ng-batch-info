@@ -1,0 +1,5 @@
+<h2>Info List</h2>
+{{infos.length}} Infos updated
+<div class="sl-list">
+  <info-card *ngFor="let info of infos" [infoObj]="info" [type]="infoType"></info-card>
+</div>

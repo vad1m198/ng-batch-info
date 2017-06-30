@@ -24,7 +24,6 @@ export class SlIconComponent {
 
 
     get iconUrl(): string {
-      //return this.config.sldsUrl + '/assets/icons/'+ this._type + '-sprite/svg/symbols.svg#announcement';
       return this.config.sldsUrl + '/assets/icons/'+ this._type + '-sprite/svg/symbols.svg#' + this._name;
     }
 }

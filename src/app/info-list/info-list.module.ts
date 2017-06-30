@@ -2,10 +2,11 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { ModelModule } from "../model/model.module";
-import { InfoListComponent } from "./infoList.component";
+import { InfoListComponent } from "./info-list.component";
+import { InfoCardModule } from "../info-card/info-card.module";
 
 @NgModule({
-  imports: [ModelModule, BrowserModule],
+  imports: [ModelModule, BrowserModule,InfoCardModule],
   declarations: [InfoListComponent],
   exports: [InfoListComponent]
 })

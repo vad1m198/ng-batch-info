@@ -1,0 +1,18 @@
+<article class="slds-card slds-m-around_x-small">
+  <div class="slds-card__header slds-grid">
+    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+      <div class="slds-media__body">
+        <h2>
+          <span class="slds-card__header-link slds-truncate" title="[object Object]">
+            <span class="slds-text-heading_small">{{Id}}</span>
+          </span>
+        </h2>
+      </div>
+    </header>
+    <div class="slds-no-flex">
+      <button class="slds-button slds-button_neutral" (click)="clicked()">{{buttonLabel}}</button>
+    </div>
+  </div>
+  <div class="slds-card__body slds-card__body_inner">{{Status}}</div>
+  <footer class="slds-card__footer">{{ExtendedStatus}}</footer>
+</article>

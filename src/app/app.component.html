@@ -7,7 +7,7 @@
             </ng-template>
             <ng-template sl-tab-content>
               <div>Failed content</div>
-              <info-lst></info-lst>
+              <info-lst [type]="'Failed'"></info-lst>
             </ng-template>
         </sl-tab>
         <sl-tab>
@@ -16,7 +16,7 @@
             </ng-template>
             <ng-template sl-tab-content>
               <div>Processing content</div>
-              <info-lst></info-lst>
+              <info-lst [type]="'Processing'"></info-lst>
             </ng-template>
         </sl-tab>
       </sl-tabs>

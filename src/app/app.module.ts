@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { Config } from './util/Config';
 import { TabsModule } from "./tabs/tabs.module";
 import { SlIconModule } from "./icon/icon.module";
-import { InfoListModule } from "./infoList/infoList.module";
+import { InfoListModule } from "./info-list/info-list.module";
 
 @NgModule({
   declarations: [
