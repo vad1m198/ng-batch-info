@@ -1,13 +1,3 @@
-/*export class BatchInfo {
-
-  constructor(
-    public Id?: string,
-    public ExtendedStatus?: string,
-    public Status?: string
-  ){ }
-
-}*/
-
 export interface IBatchInfo {
   Id?: string;
   ExtendedStatus?: string;

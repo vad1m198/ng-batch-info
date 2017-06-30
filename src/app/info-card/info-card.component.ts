@@ -1,5 +1,6 @@
-import { Component,Input } from "@angular/core";
+import { Component,Input,Output,EventEmitter } from "@angular/core";
 import { IBatchInfo } from "../model/info.model";
+import { StaticDataSource } from "../model/static.datasource";
 
 @Component({
   selector: "info-card",
@@ -9,22 +10,37 @@ import { IBatchInfo } from "../model/info.model";
 export class InfoCardComponent {
   @Input() infoObj: IBatchInfo;
   @Input() type: String;
+  @Output() removeBatchFromList: EventEmitter<any> = new EventEmitter();
+  @Output() showToast: EventEmitter<any> = new EventEmitter();
 
-  get Id():string {
-    return this.infoObj.Id;
-  }
-  get Status():string {
-    return this.infoObj.Status;
-  }
-  get ExtendedStatus():string {
-    return this.infoObj.ExtendedStatus;
-  }
+  constructor(private dataSource :StaticDataSource) {}
+
   get buttonLabel():string {
     return this.type == 'Failed' ? 'Rerun' : 'Stop';
   }
 
+  get processedPercent():number {
+      return Math.round(this.infoObj.JobItemsProcessed * 100 / this.infoObj.TotalJobItems);
+  }
+
   clicked() {
-    console.log('button clicks');
+    if(this.type == 'Failed') {
+      this.rerunBatch();
+    } else {
+      this.stopBatch();
+    }
+  }
+
+  private stopBatch():void {
+    this.dataSource.stopBatchByid(this.infoObj.Id)
+        .then(batchId => {this.removeBatchFromList.emit(batchId); this.showToast.emit({type:'info',message:'Batch was stopped successfully!'})})
+        .catch(err =>this.showToast.emit({type:'error',message:err}));
+  }
+
+  private rerunBatch():void {
+    this.dataSource.rerunBatchByName(this.infoObj.ApexClass.Name)
+        .then(res => this.showToast.emit({type:'info',message:'Batch was started successfully!'}))
+        .catch(err => this.showToast.emit({type:'error',message:err}));
   }
 
 }

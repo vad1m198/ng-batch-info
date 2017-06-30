@@ -1,4 +1,7 @@
 <div>
+
+    <sl-toast [type]="toastType" [message]="toastMessage" *ngIf="toastMessage.length > 0"></sl-toast>
+
   <div class="select-but-container slds-m-horizontal_x-small">
     <div class="slds-form-element select-container">
       <label class="slds-form-element__label" for="timePeriodSelect">Select time period</label>
@@ -21,7 +24,7 @@
   </div>
 
   <div class="sl-list" *ngIf="infos.length > 0">
-    <info-card *ngFor="let info of infos" [infoObj]="info" [type]="infoType"></info-card>
+    <info-card *ngFor="let info of infos" [infoObj]="info" [type]="infoType" (removeBatchFromList)="removeBatchFromList($event)" (showToast)="showToast($event)"></info-card>
   </div>
 
   <div *ngIf="infos.length == 0 && !isLoading">
@@ -35,5 +38,4 @@
       <div class="slds-spinner__dot-b"></div>
     </div>
   </div>
-
 </div>

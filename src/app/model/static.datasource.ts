@@ -20,10 +20,29 @@ export class StaticDataSource {
     params.push(JSON.stringify({event:'loadBatchesInfos',jobStatus:jobStatus,pageNumber:pageNumber,recordsNumber:recordsNumber,timePeriod:timePeriod}));
     return new Promise((resolve, reject) => {
       this.execute('remoteHandler', params )
-            .then(res => resolve(<IBatchInfo[]>JSON.parse(res.aRecords)))
+            .then(res => resolve(JSON.parse(res.aRecords)))
             .catch(err => reject(err))
     })
+  }
 
+  rerunBatchByName(className:string): Promise<any> {
+    const params = [];
+    params.push(JSON.stringify({event:'rerunBatchByName',className:className}));
+    return new Promise((resolve, reject) => {
+      this.execute('remoteHandler', params )
+            .then(res => resolve(res))
+            .catch(err => reject(err))
+    })
+  }
+
+  stopBatchByid(id:string): Promise<String> {
+    const params = [];
+    params.push(JSON.stringify({event:'stopBatchByid',batchId:id}));
+    return new Promise((resolve, reject) => {
+      this.execute('remoteHandler', params )
+            .then(res => resolve(res.batchId))
+            .catch(err => reject(err))
+    })
   }
 
   private execute(method: string, params: Array<any>, config?: RemotingOptions): Promise<any> {

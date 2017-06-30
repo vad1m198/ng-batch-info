@@ -25,6 +25,8 @@ export class InfoListComponent {
     public timePeriod:string = 'LAST_N_YEARS:10';
     public infos:IBatchInfo[] = [];
     public isLoading = true;
+    public toastType:string = 'info';
+    public toastMessage:string = '';
 
     constructor(private dataSource :StaticDataSource) {
     }
@@ -42,6 +44,21 @@ export class InfoListComponent {
       this.fetchInfos();
     }
 
+    removeBatchFromList(batchId):void{
+      this.infos = this.infos.filter(info => info.Id != batchId);
+    }
+
+    showToast(event):void {
+      this.toastType = event.type;
+      this.toastMessage = event.message;
+      if(this.toastType != 'error') {
+        setTimeout(() => {
+          this.toastMessage = '';
+        }, 3000);
+      }
+
+    }
+
     onPaginationClick(buttonName):void{
       if(buttonName == 'Next') this.pageNumber++;
       if(buttonName == 'Previous') this.pageNumber--;
@@ -51,8 +68,8 @@ export class InfoListComponent {
     private fetchInfos():void {
       this.isLoading = true;
       this.dataSource.getInfosPromise(this.pageNumber,this.recordsNumber,this.timePeriod,this.type )
-        .then(res => {this.isLoading = false;this.infos = res;console.log('fetchInfos >>> ', this.infos)})
-        .catch(err => {this.isLoading = false;console.error(err)});
+        .then(res => {this.isLoading = false;this.infos = res})
+        .catch(err => {this.isLoading = false;this.toastType = 'error';this.toastMessage = err});
     }
 
 }
