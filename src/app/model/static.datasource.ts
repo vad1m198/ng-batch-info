@@ -1,7 +1,5 @@
 import { Injectable } from "@angular/core";
 import { IBatchInfo } from "./info.model";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/observable/from";
 
 export interface RemotingOptions {
 	buffer?: boolean,
@@ -13,7 +11,7 @@ export interface RemotingOptions {
 @Injectable()
 export class StaticDataSource {
 
-  private _controller = "Batches_Info_Controller";
+  readonly _controller = "Batches_Info_Controller";
 
   getInfosPromise(pageNumber:number,recordsNumber:number,timePeriod:string,jobStatus:string ): Promise<IBatchInfo[]> {
     const params = [];
